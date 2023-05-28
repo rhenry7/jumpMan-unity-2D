@@ -3,6 +3,8 @@ Library/PackageCache/com.unity.burst@1.6.6/.Runtime/hostmac/lld
 #
 # Get latest from https://github.com/github/gitignore/blob/master/Unity.gitignore
 #
+Library/
+
 /[Ll]ibrary/
 /[Tt]emp/
 /[Oo]bj/
