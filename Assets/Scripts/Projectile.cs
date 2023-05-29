@@ -5,24 +5,19 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     private float speed;
 
-    private float direction;
-
     private bool hit;
 
-    private BoxCollider2D boxCollider;
+    private float direction;
 
     private Animator animation;
 
-    private Rigidbody2D rb;
+    private BoxCollider2D boxCollider;
 
     // Start is called before the first frame update
     private void Start()
     {
         boxCollider = GetComponent<BoxCollider2D>();
         animation = GetComponent<Animator>();
-
-        // rb = GetComponent<Rigidbody2D>();
-        // rb.velocity = transform.right * speed;
     }
 
     // Update is called once per frame
@@ -36,7 +31,9 @@ public class Projectile : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         hit = true;
-        boxCollider.enabled = false;
+
+        // every time it hits, make it explode and enable collision true
+        boxCollider.enabled = true;
         animation.SetTrigger("Explode");
     }
 
@@ -45,7 +42,6 @@ public class Projectile : MonoBehaviour
         direction = _direction;
         gameObject.SetActive(true);
         hit = false;
-        boxCollider.enabled = true;
 
         float localScaleX = transform.localScale.x;
         if (Mathf.Sign(localScaleX) != _direction) localScaleX = -localScaleX;

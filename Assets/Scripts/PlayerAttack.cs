@@ -47,4 +47,16 @@ public class PlayerAttack : MonoBehaviour
             .GetComponent<Projectile>()
             .SetDirection(Mathf.Sign(transform.localScale.x));
     }
+
+    private int FindFireball()
+    {
+        for (int i = 0; i < fireballs.Length; i++)
+        {
+            if (!fireballs[i].activeInHierarchy)
+            {
+                return i;
+            }
+        }
+        return 0;
+    }
 }
