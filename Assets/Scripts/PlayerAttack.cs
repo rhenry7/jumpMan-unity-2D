@@ -5,6 +5,12 @@ public class PlayerAttack : MonoBehaviour
     [SerializeField]
     private float attackCooldown;
 
+    [SerializeField]
+    private Transform firePoint;
+
+    [SerializeField]
+    private GameObject[] fireballs;
+
     private Animator animation;
 
     private Movement playerMovement;
@@ -19,16 +25,13 @@ public class PlayerAttack : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (
             Input.GetMouseButton(0) &&
             cooldownTimer > attackCooldown &&
             playerMovement.canAttack()
-        )
-        {
-            Attack();
-        }
+        ) Attack();
 
         cooldownTimer += Time.deltaTime;
     }
@@ -37,5 +40,11 @@ public class PlayerAttack : MonoBehaviour
     {
         animation.SetTrigger("Attack");
         cooldownTimer = 0;
+
+        // object pooling
+        fireballs[0].transform.position = firePoint.position;
+        fireballs[0]
+            .GetComponent<Projectile>()
+            .SetDirection(Mathf.Sign(transform.localScale.x));
     }
 }

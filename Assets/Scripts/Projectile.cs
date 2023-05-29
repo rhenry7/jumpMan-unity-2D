@@ -5,23 +5,28 @@ public class Projectile : MonoBehaviour
     [SerializeField]
     private float speed;
 
+    private float direction;
+
     private bool hit;
 
     private BoxCollider2D boxCollider;
 
     private Animator animation;
 
-    private float direction;
+    private Rigidbody2D rb;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         boxCollider = GetComponent<BoxCollider2D>();
         animation = GetComponent<Animator>();
+
+        // rb = GetComponent<Rigidbody2D>();
+        // rb.velocity = transform.right * speed;
     }
 
     // Update is called once per frame
-    void Update()
+    private void Update()
     {
         if (hit) return;
         float movementSpeed = speed * Time.deltaTime * direction;
@@ -43,10 +48,7 @@ public class Projectile : MonoBehaviour
         boxCollider.enabled = true;
 
         float localScaleX = transform.localScale.x;
-        if (Mathf.Sign(localScaleX) != _direction)
-        {
-            localScaleX = -localScaleX;
-        }
+        if (Mathf.Sign(localScaleX) != _direction) localScaleX = -localScaleX;
 
         transform.localScale =
             new Vector3(localScaleX,
