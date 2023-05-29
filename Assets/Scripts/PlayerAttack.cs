@@ -42,12 +42,13 @@ public class PlayerAttack : MonoBehaviour
         cooldownTimer = 0;
 
         // object pooling
-        fireballs[0].transform.position = firePoint.position;
-        fireballs[0]
+        fireballs[FindFireball()].transform.position = firePoint.position;
+        fireballs[FindFireball()]
             .GetComponent<Projectile>()
             .SetDirection(Mathf.Sign(transform.localScale.x));
     }
 
+    // get fireball in the array
     private int FindFireball()
     {
         for (int i = 0; i < fireballs.Length; i++)
