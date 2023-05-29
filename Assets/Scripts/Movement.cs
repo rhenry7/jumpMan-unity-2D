@@ -22,6 +22,8 @@ public class Movement : MonoBehaviour
 
     private float wallJumpCooldown;
 
+    private float horizontalInput;
+
     private void Awake()
     {
         // Grab reference for body and animation
@@ -32,7 +34,8 @@ public class Movement : MonoBehaviour
 
     private void Update()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
+        horizontalInput = Input.GetAxis("Horizontal");
+
         body.velocity =
             new Vector2(Input.GetAxis("Horizontal") * speed, body.velocity.y);
 
@@ -46,12 +49,7 @@ public class Movement : MonoBehaviour
         animation.SetBool("Run", horizontalInput != 0);
         animation.SetBool("Grounded", isGrounded());
 
-        if (Input.GetKey(KeyCode.Space) && isGrounded())
-        {
-            Jump();
-        }
-
-        if (wallJumpCooldown < 0.2f)
+        if (wallJumpCooldown > 0.2f)
         {
             if (Input.GetKey(KeyCode.Space))
             {
@@ -69,7 +67,7 @@ public class Movement : MonoBehaviour
             else
                 body.gravityScale = 3;
 
-            if (Input.GetKey(KeyCode.Space) && isGrounded())
+            if (Input.GetKey(KeyCode.Space))
             {
                 Jump();
             }
@@ -85,9 +83,24 @@ public class Movement : MonoBehaviour
             body.velocity = new Vector2(body.velocity.x, jumpSpeed);
             animation.SetTrigger("Jump");
         }
-        // else if (onWall() && !isGrounded())
-        // {
-        // }
+        else if (onWall() && !isGrounded())
+        {
+            if (horizontalInput == 0)
+            {
+                body.velocity =
+                    new Vector2(-Mathf.Sign(transform.localScale.x) * 10, 0);
+            }
+            else
+            {
+                body.velocity =
+                    new Vector2(-Mathf.Sign(transform.localScale.x) * 3, 6);
+                transform.localScale =
+                    new Vector3(-Mathf.Sign(transform.localScale.x),
+                        transform.localScale.y,
+                        transform.localScale.z);
+            }
+            wallJumpCooldown = 0;
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -122,5 +135,10 @@ public class Movement : MonoBehaviour
                 wallLayer);
 
         return raycastHit.collider != null;
+    }
+
+    public bool canAttack()
+    {
+        return horizontalInput == 0 && isGrounded() && !onWall();
     }
 }
