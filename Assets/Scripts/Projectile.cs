@@ -37,7 +37,7 @@ public class Projectile : MonoBehaviour
     {
         hit = true;
         boxCollider.enabled = false;
-        animation.SetTrigger("explode");
+        animation.SetTrigger("Explode");
     }
 
     public void SetDirection(float _direction)
