@@ -7,12 +7,17 @@ public class Health : MonoBehaviour
     [SerializeField]
     private float startingHealth;
 
+    private Animator animation;
+
     public float currentHealth { get; private set; }
+
+    private bool dead;
 
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = startingHealth;
+        animation = GetComponent<Animator>();
     }
 
     public void TakeDamage(float _damage)
@@ -22,20 +27,19 @@ public class Health : MonoBehaviour
         //currentHealth -= _damage;
         if (currentHealth > 0)
         {
-            // player hurt, but alive
+            animation.SetTrigger("Hurt");
+            // iframes
         }
         else
         {
-            // player has died
+            if (!dead)
+            {
+                animation.SetTrigger("Die");
+                GetComponent<Movement>().enabled = false;
+                dead = true;
+            }
         }
     }
 
     // Update is called once per frame
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            TakeDamage(1);
-        }
-    }
 }
