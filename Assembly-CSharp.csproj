@@ -45,6 +45,7 @@
      <Compile Include="Assets/Scripts/Movement.cs" />
      <Compile Include="Assets/Scripts/Door.cs" />
      <Compile Include="Assets/Scripts/PlayerAttack.cs" />
+     <Compile Include="Assets/Scripts/Health/HealthBar.cs" />
      <Compile Include="Assets/Scripts/CameraController.cs" />
      <None Include="Assets/Sprites/Character/Read Me.txt" />
     <Reference Include="UnityEngine">
