@@ -47,6 +47,7 @@
      <Compile Include="Assets/Scripts/PlayerAttack.cs" />
      <Compile Include="Assets/Scripts/Health/HealthBar.cs" />
      <Compile Include="Assets/Scripts/CameraController.cs" />
+     <Compile Include="Assets/Scripts/Enemy_Sideways.cs" />
      <None Include="Assets/Sprites/Character/Read Me.txt" />
     <Reference Include="UnityEngine">
         <HintPath>/Applications/Unity/Hub/Editor/2022.2.13f1/Unity.app/Contents/Managed/UnityEngine/UnityEngine.dll</HintPath>
