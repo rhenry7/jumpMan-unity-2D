@@ -27,6 +27,7 @@ public class Health : MonoBehaviour
         //currentHealth -= _damage;
         if (currentHealth > 0)
         {
+            // trigger when damage
             animation.SetTrigger("Hurt");
             // iframes
         }
