@@ -4,8 +4,18 @@ using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    [Header("Health")]
     [SerializeField]
     private float startingHealth;
+
+    [Header("iFrames")]
+    [SerializeField]
+    private float iFramesDuration;
+
+    [SerializeField]
+    private float numberOfFlashes;
+
+    private SpriteRenderer spriteRenderer;
 
     private Animator animation;
 
