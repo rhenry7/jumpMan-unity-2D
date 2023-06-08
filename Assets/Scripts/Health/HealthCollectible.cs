@@ -23,6 +23,8 @@ public class HealthCollectible : MonoBehaviour
         {
             collision.GetComponent<Health>().AddHealth(health);
             Destroy(this.gameObject);
+            // alternative to way to disable gameObject
+            // gameObject.SetActive(false);
         }
     }
 }
