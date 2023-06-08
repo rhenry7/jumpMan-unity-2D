@@ -20,6 +20,9 @@ public class Movement : MonoBehaviour
     [SerializeField]
     private LayerMask wallLayer;
 
+    [SerializeField]
+    private Health playerHealth;
+
     private float wallJumpCooldown;
 
     private float horizontalInput;

@@ -11,13 +11,26 @@ public class Health : MonoBehaviour
 
     public float currentHealth { get; private set; }
 
-    private bool dead;
+    public bool dead { get; private set; }
 
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = startingHealth;
         animation = GetComponent<Animator>();
+    }
+
+    private void Update()
+    {
+        CheckHealth();
+    }
+
+    private void CheckHealth()
+    {
+        if (dead)
+        {
+            //  Destroy(GameObject.FindGameObjectsWithTag("Player"));
+        }
     }
 
     public void AddHealth(float _health)
