@@ -15,7 +15,7 @@ public class Health : MonoBehaviour
     [SerializeField]
     private float numberOfFlashes;
 
-    private SpriteRenderer spriteRenderer;
+    private SpriteRenderer spriteRend;
 
     private Animator animation;
 
@@ -28,6 +28,7 @@ public class Health : MonoBehaviour
     {
         currentHealth = startingHealth;
         animation = GetComponent<Animator>();
+        spriteRend = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -57,6 +58,7 @@ public class Health : MonoBehaviour
         {
             // trigger when damage
             animation.SetTrigger("Hurt");
+            StartCoroutine(Invincibility());
             // iframes
         }
         else
@@ -68,6 +70,18 @@ public class Health : MonoBehaviour
                 dead = true;
             }
         }
+    }
+
+    private IEnumerator Invincibility()
+    {
+        Physics2D.IgnoreLayerCollision(10, 11, true);
+
+        // invincibility duration
+        for (int i = 0; i < numberOfFlashes; i++)
+        {
+            spriteRend.color = new Color(1, 0, 0, 0.5f);
+        }
+        Physics2D.IgnoreLayerCollision(10, 11, true);
     }
 
     // Update is called once per frame
