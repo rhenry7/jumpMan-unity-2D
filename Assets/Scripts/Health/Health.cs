@@ -55,14 +55,10 @@ public class Health : MonoBehaviour
         if (isInvincible) return;
         currentHealth = Mathf.Clamp(currentHealth - _damage, 0, startingHealth);
 
-        //currentHealth -= _damage;
         if (currentHealth > 0)
         {
-            // trigger when damage
             animation.SetTrigger("Hurt");
             StartCoroutine(BecomeTemporarilyInvincible());
-            //StartCoroutine(Invincibility());
-            // iframes
         }
         else
         {
