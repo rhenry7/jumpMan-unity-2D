@@ -26,6 +26,7 @@ public class ArrowTrap : MonoBehaviour
 
     private int FindFireball()
     {
+        // loop through array of fireballs and shoot the next projectile
         for (int i = 0; i < fireballs.Length; i++)
         {
             if (!fireballs[i].activeInHierarchy) return i;
