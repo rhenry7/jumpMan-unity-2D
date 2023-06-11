@@ -38,5 +38,9 @@ Enemy_Projectile
     private void OnTriggerEnter2D(Collider2D collision)
     {
         gameObject.SetActive(false);
+        if (collision.tag == "Player")
+        {
+            collision.GetComponent<Health>().TakeDamage(damage);
+        }
     }
 }
