@@ -20,7 +20,7 @@ public class ArrowTrap : MonoBehaviour
     {
         cooldownTimer = 0;
 
-        fireballs[0].transform.position = firePoint.position;
+        fireballs[FindFireball()].transform.position = firePoint.position;
         // fireballs[0].GetComponent<EnemyProjectile>().SetDirection(Mathf.Sign(transform.localScale.x));
     }
 
