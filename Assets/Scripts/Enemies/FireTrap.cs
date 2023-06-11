@@ -38,11 +38,7 @@ public class FireTrap : MonoBehaviour
                 // trigger
                 StartCoroutine(ActivateFireTrap());
             }
-            if (active)
-            {
-                // trigger
-                collision.GetComponent<Health>().TakeDamage(damage);
-            }
+            collision.GetComponent<Health>().TakeDamage(damage);
         }
     }
 
@@ -50,12 +46,16 @@ public class FireTrap : MonoBehaviour
     {
         triggered = true;
         spriteRend.color = Color.red;
+
         yield return new WaitForSeconds(activationDelay);
         spriteRend.color = Color.white;
         active = true;
+        anim.SetBool("Activated", true);
+
         yield return new WaitForSeconds(activeTime);
         active = false;
         triggered = false;
+        anim.SetBool("Activated", false);
     }
 
     // Update is called once per frame
