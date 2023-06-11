@@ -12,7 +12,7 @@ public class ArrowTrap : MonoBehaviour
     private Transform firePoint;
 
     [SerializeField]
-    private GameObject[] fireballs;
+    private GameObject[] arrows;
 
     private float cooldownTimer;
 
@@ -20,17 +20,30 @@ public class ArrowTrap : MonoBehaviour
     {
         cooldownTimer = 0;
 
-        fireballs[FindFireball()].transform.position = firePoint.position;
-        // fireballs[0].GetComponent<EnemyProjectile>().SetDirection(Mathf.Sign(transform.localScale.x));
+        arrows[FindArrow()].transform.position = firePoint.position;
+        arrows[FindArrow()]
+            .GetComponent<Enemy_Projectile>()
+            .ActivateProjectile();
     }
 
-    private int FindFireball()
+    private int FindArrow()
     {
-        // loop through array of fireballs and shoot the next projectile
-        for (int i = 0; i < fireballs.Length; i++)
+        // loop through array of arrows and shoot the next projectile
+        for (int i = 0; i < arrows.Length; i++)
         {
-            if (!fireballs[i].activeInHierarchy) return i;
+            Debug.Log("found arrow");
+            if (!arrows[i].activeInHierarchy) return i;
         }
         return 0;
+    }
+
+    void Update()
+    {
+        cooldownTimer += Time.deltaTime;
+
+        if (cooldownTimer > attackCooldown)
+        {
+            Attack();
+        }
     }
 }
