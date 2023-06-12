@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets/Scripts/Player/Movement.cs" />
+     <Compile Include="Assets/Scripts/Enemies/SpikeHead.cs" />
      <Compile Include="Assets/Scripts/Enemies/Enemy_Sideways.cs" />
      <Compile Include="Assets/Scripts/Enemies/FireTrap.cs" />
      <Compile Include="Assets/Scripts/Health/Health.cs" />
