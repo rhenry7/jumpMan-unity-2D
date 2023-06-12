@@ -37,6 +37,10 @@ Enemy_Projectile
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        // way to inherit logic from other class
+
+        // base.OnTriggerEnter2D(collision);
+
         gameObject.SetActive(false);
         if (collision.tag == "Player")
         {
