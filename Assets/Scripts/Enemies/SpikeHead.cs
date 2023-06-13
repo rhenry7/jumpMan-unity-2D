@@ -57,7 +57,7 @@ public class SpikeHead : Enemy_Damage
             if (hit.collider != null && !attacking)
             {
                 attacking = true;
-                destination = directions[1];
+                destination = directions[i];
                 checkTimer = 0;
             }
         }
