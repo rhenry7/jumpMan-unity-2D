@@ -24,6 +24,11 @@ public class SpikeHead : Enemy_Damage
 
     private Vector3[] directions = new Vector3[4];
 
+    private void OnEnable()
+    {
+        Stop();
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -49,6 +54,12 @@ public class SpikeHead : Enemy_Damage
                     directions[i],
                     range,
                     playerLayer);
+            if (hit.collider != null && !attacking)
+            {
+                attacking = true;
+                destination = directions[1];
+                checkTimer = 0;
+            }
         }
     }
 
@@ -58,5 +69,17 @@ public class SpikeHead : Enemy_Damage
         directions[1] = -transform.right * range; // Left
         directions[2] = transform.up * range; // Up
         directions[3] = -transform.up * range; // Down
+    }
+
+    private void Stop()
+    {
+        destination = transform.position; // Set destination as current position;
+        attacking = false;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        base.OnTriggerEnter2D(collision);
+        Stop();
     }
 }
