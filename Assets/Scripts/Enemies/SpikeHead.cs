@@ -13,6 +13,9 @@ public class SpikeHead : Enemy_Damage
     [SerializeField]
     private float checkDelay;
 
+    [SerializeField]
+    private LayerMask playerLayer;
+
     private float checkTimer;
 
     private Vector3 destination;
@@ -40,6 +43,12 @@ public class SpikeHead : Enemy_Damage
         for (int i = 0; i < directions.Length; i++)
         {
             Debug.DrawRay(transform.position, directions[i], Color.red);
+            RaycastHit2D hit =
+                Physics2D
+                    .Raycast(transform.position,
+                    directions[i],
+                    range,
+                    playerLayer);
         }
     }
 
