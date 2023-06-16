@@ -48,6 +48,7 @@ public class SpikeHead : Enemy_Damage
         for (int i = 0; i < directions.Length; i++)
         {
             // Consider spike just goes up and down; after down goes back
+            // dont understand what is wrong with save file
             Debug.DrawRay(transform.position, directions[i], Color.red);
             RaycastHit2D hit =
                 Physics2D
