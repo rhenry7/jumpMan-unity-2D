@@ -22,7 +22,7 @@ public class SpikeHead : Enemy_Damage
 
     private bool attacking;
 
-    private Vector3[] directions = new Vector3[4];
+    private Vector3[] directions = new Vector3[2];
 
     private void OnEnable()
     {
@@ -67,10 +67,10 @@ public class SpikeHead : Enemy_Damage
 
     private void CalculateDirection()
     {
-        directions[0] = transform.right * range; // Right
-        directions[1] = -transform.right * range; // Left
-        directions[2] = transform.up * range; // Up
-        directions[3] = -transform.up * range; // Down
+        //directions[0] = transform.right * range; // Right
+        //directions[1] = -transform.right * range; // Left
+        directions[0] = transform.up * range; // Up
+        directions[1] = -transform.up * range; // Down
     }
 
     private void Stop()
